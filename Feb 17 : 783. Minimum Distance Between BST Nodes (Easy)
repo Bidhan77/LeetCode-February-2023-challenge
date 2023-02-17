@@ -1,0 +1,24 @@
+class Solution {
+    int res=Integer.MAX_VALUE;                          //Declare global variable to access from anywere
+    TreeNode prev=null;                                //This will store previous node of root.
+
+    public int minDiffInBST(TreeNode root) {
+        InOrder(root);                                //Calling InOrder function
+        return res;                                  //return Minimum Difference Between BST Nodes
+    }
+
+    public void InOrder(TreeNode root){
+        if(root==null) return;                        // if root will be null then return 
+        InOrder(root.left);                          // Go to left part of the tree
+
+        if(prev!=null){                             // here checking if prev is not null because if root will be at (first) last node then previous node will be null
+           res=Math.min(res,(root.val-prev.val));   //calculate minimum value of result , root value ans prevoius value
+              }
+        prev=root;                                  //now prevoius store  root
+
+        InOrder(root.right);                        // Now go to right part of the tree
+    }
+}
+
+// T.C O(n) because traverse all the nodes
+// S.C O(1) because no extra space used
