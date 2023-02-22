@@ -1,0 +1,44 @@
+## Brutfore approach O(n) ##
+
+class Solution {
+    public int singleNonDuplicate(int[] nums) {
+        int n=nums.length;
+        for(int i=0;i<n-1;i=i+2){
+            if(nums[i]!=nums[i+1]) return nums[i];
+        }
+        return nums[n-1];
+    }
+}
+
+
+## Bit manipulation O(n) ##
+
+class Solution {
+    public int singleNonDuplicate(int[] nums) {
+        int res = 0;
+        for(int i=0;i<nums.length;i++)
+        {
+            res = res^nums[i];
+        }
+        return res;
+    }
+}
+
+## Binary search ##
+
+class Solution {
+    public int singleNonDuplicate(int[] nums) {
+        int start = 0,end = nums.length-1;
+        while(start < end)
+        {
+            int mid = start + (end-start)/2;
+            if(mid % 2 == 1)
+                mid--;
+            
+            if(nums[mid] != nums[mid+1])
+                end = mid;
+            else start = mid+2;
+        }
+        return nums[start];
+    }
+}
