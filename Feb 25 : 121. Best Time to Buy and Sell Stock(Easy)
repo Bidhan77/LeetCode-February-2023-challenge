@@ -1,0 +1,40 @@
+T.C O(n2)  :- Because of n2 time complaxity "Time Limit Exceeded".
+
+class Solution {
+    public int maxProfit(int[] prices) {
+        int n=prices.length;
+        int profit=0,maxProfit=0;
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<n;j++){
+                if(prices[j]>prices[i]){
+                    profit=prices[j]-prices[i];
+                }
+                if(profit>maxProfit) maxProfit=profit;
+            }
+        }
+        return maxProfit;
+    }
+}
+
+
+
+T.C O(n)
+
+class Solution {
+    public int maxProfit(int[] prices) {
+        int n=prices.length;
+        int profit=0,maxProfit=0;
+        int buy=prices[0],sell=prices[0];
+        for(int i=1;i<n;i++){
+            if(prices[i]<buy){ ...........................// if prices of current index is less than bye 
+                buy=prices[i]; ..........................// then update buy with current price 
+            }
+            else{
+                sell=prices[i]; .........................// else update sell with current price 
+                profit=sell-buy; ........................// find profit 
+                maxProfit=Math.max(profit,maxProfit); ..// now update maxProfit if 
+            } .........................................// profit is greater than maxProfit
+        }
+        return maxProfit;
+    }
+}
